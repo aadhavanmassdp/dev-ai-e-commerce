@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaStore — Futuristic E-Commerce</title>
+
+    <!-- Bootstrap 5 + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <!-- ========== NAVBAR (shared) ========== -->
+    <nav class="navbar navbar-expand-lg sticky-top neon-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <span class="brand-glow">NOVA</span><span class="brand-dot">.</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product-detail.html?product=0">Featured</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="cart.html" class="nav-link position-relative" id="cartIconLink">
+                        <i class="bi bi-cart3 fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-neon" id="cartCount">0</span>
+                    </a>
+                    <a href="checkout.html" class="btn btn-neon-outline btn-sm px-3">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main>
+
+        <!-- HERO -->
+        <section class="hero-section position-relative overflow-hidden">
+            <div class="hero-glow-bg"></div>
+            <div class="container py-5 my-4">
+                <div class="row align-items-center min-vh-60">
+                    <div class="col-lg-6 text-center text-lg-start">
+                        <span class="badge bg-neon-soft px-3 py-2 mb-3 rounded-pill">
+                            <i class="bi bi-stars me-1"></i> Next-Gen Tech
+                        </span>
+                        <h1 class="display-2 fw-bold hero-title">
+                            Future <br /><span class="gradient-text">is Now</span>
+                        </h1>
+                        <p class="text-secondary-glow fs-5 mt-3 mb-4" style="max-width: 480px;">
+                            Explore the most advanced gadgets, designed for the world of tomorrow.
+                            Premium quality. Zero compromise.
+                        </p>
+                        <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                            <a href="products.html" class="btn btn-neon btn-lg px-5">
+                                <i class="bi bi-grid-3x3-gap-fill me-2"></i> Explore
+                            </a>
+                            <a href="product-detail.html?product=0" class="btn btn-outline-neon btn-lg px-5">
+                                <i class="bi bi-play-circle me-2"></i> Featured
+                            </a>
+                        </div>
+                        <div class="d-flex gap-5 mt-5 justify-content-center justify-content-lg-start">
+                            <div><span class="h3 fw-bold gradient-text">10+</span><br /><small class="text-secondary-glow">Products</small></div>
+                            <div><span class="h3 fw-bold gradient-text">4.9★</span><br /><small class="text-secondary-glow">Rating</small></div>
+                            <div><span class="h3 fw-bold gradient-text">24/7</span><br /><small class="text-secondary-glow">Support</small></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-none d-lg-block">
+                        <div class="hero-visual position-relative">
+                            <div class="floating-card card-glass p-4" style="transform: rotate(-2deg) translateX(20px);">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-neon-soft rounded-3 p-2"><i class="bi bi-cpu fs-2"></i></div>
+                                    <div><small class="text-secondary-glow">Quantum X1</small><br /><strong class="text-white">$999</strong></div>
+                                </div>
+                            </div>
+                            <div class="floating-card card-glass p-4" style="transform: rotate(3deg) translateX(-30px) translateY(40px);">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-neon-soft rounded-3 p-2"><i class="bi bi-headphones fs-2"></i></div>
+                                    <div><small class="text-secondary-glow">Nova Buds</small><br /><strong class="text-white">$249</strong></div>
+                                </div>
+                            </div>
+                            <div class="floating-card card-glass p-4" style="transform: rotate(-1deg) translateX(50px) translateY(80px);">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-neon-soft rounded-3 p-2"><i class="bi bi-watch fs-2"></i></div>
+                                    <div><small class="text-secondary-glow">Cyber Watch</small><br /><strong class="text-white">$399</strong></div>
+                                </div>
+                            </div>
+                            <div class="hero-orb orb-1"></div>
+                            <div class="hero-orb orb-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section class="py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="badge bg-neon-soft px-3 py-2 rounded-pill">Categories</span>
+                    <h2 class="display-5 fw-bold mt-2">Shop by <span class="gradient-text">Category</span></h2>
+                </div>
+                <div class="row g-4" id="categoryGrid"></div>
+            </div>
+        </section>
+
+        <!-- FEATURED PRODUCTS -->
+        <section class="py-5 bg-dark-surface">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center mb-5">
+                    <div>
+                        <span class="badge bg-neon-soft px-3 py-2 rounded-pill">Trending</span>
+                        <h2 class="display-5 fw-bold mt-2">Featured <span class="gradient-text">Products</span></h2>
+                    </div>
+                    <a href="products.html" class="btn btn-outline-neon">View All <i class="bi bi-arrow-right ms-1"></i></a>
+                </div>
+                <div class="row g-4" id="featuredProducts"></div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER / CTA -->
+        <section class="py-5">
+            <div class="container">
+                <div class="cta-card card-glass p-5 text-center position-relative overflow-hidden">
+                    <div class="cta-glow"></div>
+                    <h3 class="fw-bold display-6">Ready for the <span class="gradient-text">Future</span>?</h3>
+                    <p class="text-secondary-glow mx-auto" style="max-width: 500px;">
+                        Subscribe to get early access to new drops and exclusive offers.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center mt-3">
+                        <input type="email" class="form-control form-control-lg bg-transparent border-neon" style="max-width: 360px;" placeholder="Enter your email" />
+                        <button class="btn btn-neon btn-lg px-5">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer pt-5 pb-3 mt-5 border-top border-neon-subtle">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="navbar-brand fw-bold" href="index.html">
+                        <span class="brand-glow">NOVA</span><span class="brand-dot">.</span>
+                    </a>
+                    <p class="text-secondary-glow mt-2" style="max-width: 280px;">
+                        Pioneering the future of consumer tech. Built for those who dare to innovate.
+                    </p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-secondary-glow hover-neon"><i class="bi bi-twitter-x fs-5"></i></a>
+                        <a href="#" class="text-secondary-glow hover-neon"><i class="bi bi-github fs-5"></i></a>
+                        <a href="#" class="text-secondary-glow hover-neon"><i class="bi bi-discord fs-5"></i></a>
+                        <a href="#" class="text-secondary-glow hover-neon"><i class="bi bi-youtube fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="fw-bold text-white">Shop</h6>
+                    <ul class="list-unstyled text-secondary-glow small">
+                        <li><a href="products.html" class="text-secondary-glow hover-neon text-decoration-none">All Products</a></li>
+                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Electronics</a></li>
+                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Audio</a></li>
+                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Wearables</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="fw-bold text-white">Support</h6>
+                    <ul class="list-unstyled text-secondary-glow small">
+                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Help Center</a></li>
+                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Returns</a></li>
+                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Shipping</a></li>
+                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="fw-bold text-white">Stay Connected</h6>
+                    <p class="text-secondary-glow small">Get the latest drops and exclusive offers.</p>
+                    <div class="d-flex gap-2">
+                        <input type="email" class="form-control form-control-sm bg-transparent border-neon" placeholder="Email" />
+                        <button class="btn btn-neon btn-sm">Join</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-neon-subtle mt-4" />
+            <div class="text-center text-secondary-glow small">
+                &copy; 2026 <span class="text-white">NOVA</span>. Built for the future.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Homepage-specific -->
+    <script>
+        // Render categories and featured products
+        (function() {
+            const catContainer = document.getElementById('categoryGrid');
+            if (catContainer) {
+                const cats = [
+                    { name: 'Electronics', icon: 'bi-cpu', count: 4 },
+                    { name: 'Audio', icon: 'bi-headphones', count: 2 },
+                    { name: 'Wearables', icon: 'bi-watch', count: 2 },
+                    { name: 'Gaming', icon: 'bi-joystick', count: 1 },
+                    { name: 'Accessories', icon: 'bi-plug', count: 1 },
+                ];
+                catContainer.innerHTML = cats.map(c => `
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <a href="products.html?category=${encodeURIComponent(c.name)}" class="text-decoration-none">
+                            <div class="category-card card-glass text-center p-4 h-100 d-flex flex-column align-items-center justify-content-center">
+                                <i class="bi ${c.icon} fs-1 gradient-text mb-2"></i>
+                                <span class="fw-bold text-white">${c.name}</span>
+                                <small class="text-secondary-glow">${c.count} items</small>
+                            </div>
+                        </a>
+                    </div>
+                `).join('');
+            }
+
+            const featContainer = document.getElementById('featuredProducts');
+            if (featContainer && window.PRODUCTS) {
+                const featured = window.PRODUCTS.slice(0, 4);
+                featContainer.innerHTML = featured.map(p => `
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="product-card card-glass h-100 d-flex flex-column">
+                            <div class="product-img-wrap position-relative">
+                                <img src="${p.image}" alt="${p.name}" class="img-fluid w-100" style="height:200px;object-fit:cover;border-radius:12px 12px 0 0;" />
+                                ${p.badge ? `<span class="badge bg-neon position-absolute top-0 end-0 m-2">${p.badge}</span>` : ''}
+                            </div>
+                            <div class="p-3 d-flex flex-column flex-grow-1">
+                                <small class="text-secondary-glow">${p.category}</small>
+                                <h6 class="fw-bold text-white mt-1">${p.name}</h6>
+                                <div class="d-flex align-items-center gap-2 mt-1">
+                                    <span class="text-warning">${'★'.repeat(Math.floor(p.rating))}${p.rating % 1 >= 0.5 ? '★' : ''}</span>
+                                    <small class="text-secondary-glow">(${p.reviews})</small>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                                    <span class="h5 fw-bold gradient-text mb-0">$${p.price}</span>
+                                    <button class="btn btn-neon btn-sm add-to-cart" data-id="${p.id}">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Update cart badge
+            if (window.updateCartBadge) window.updateCartBadge();
+        })();
+
+        // Add to cart event delegation
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.add-to-cart');
+            if (btn) {
+                e.preventDefault();
+                const id = parseInt(btn.dataset.id);
+                if (window.addToCart && !isNaN(id)) {
+                    window.addToCart(id);
+                    if (window.updateCartBadge) window.updateCartBadge();
+                    const orig = btn.innerHTML;
+                    btn.innerHTML = '<i class="bi bi-check-lg"></i>';
+                    setTimeout(() => { btn.innerHTML = orig; }, 1200);
+                }
+            }
+        });
+
+        // Listen for cart updates
+        window.addEventListener('cartUpdated', function() {
+            if (window.updateCartBadge) window.updateCartBadge();
+        });
+    </script>
+</body>
+</html>
