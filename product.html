@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products — NovaStore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <!-- ===== NAVBAR (same as index) ===== -->
+    <nav class="navbar navbar-expand-lg sticky-top neon-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <span class="brand-glow">NOVA</span><span class="brand-dot">.</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product-detail.html?product=0">Featured</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="cart.html" class="nav-link position-relative">
+                        <i class="bi bi-cart3 fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-neon" id="cartCount">0</span>
+                    </a>
+                    <a href="checkout.html" class="btn btn-neon-outline btn-sm px-3">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN ===== -->
+    <main class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Filters -->
+                <div class="col-lg-3 mb-4">
+                    <h4 class="fw-bold text-white"><i class="bi bi-funnel me-2"></i>Filters</h4>
+                    <div class="mb-3">
+                        <label class="text-secondary-glow small">Search</label>
+                        <input type="text" id="searchInput" class="form-control bg-transparent border-neon" placeholder="Search products..." />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-secondary-glow small">Category</label>
+                        <select id="categoryFilter" class="form-select bg-transparent border-neon">
+                            <option value="all">All Categories</option>
+                            <!-- populated by JS -->
+                        </select>
+                    </div>
+                    <button class="btn btn-neon w-100" id="clearFilters">Clear Filters</button>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="col-lg-9">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="fw-bold"><span class="gradient-text">All</span> Products</h2>
+                        <span class="text-secondary-glow" id="resultCount"></span>
+                    </div>
+                    <div class="row g-4" id="productGrid"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer pt-5 pb-3 mt-5 border-top border-neon-subtle">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center text-secondary-glow small">
+                    &copy; 2026 <span class="text-white">NOVA</span>. Built for the future.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Products page logic
+        (function() {
+            const grid = document.getElementById('productGrid');
+            const searchInput = document.getElementById('searchInput');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const clearBtn = document.getElementById('clearFilters');
+            const resultCount = document.getElementById('resultCount');
+
+            // Populate category filter
+            const categories = [...new Set(window.PRODUCTS.map(p => p.category))];
+            const catSelect = categoryFilter;
+            categories.forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.textContent = cat;
+                catSelect.appendChild(opt);
+            });
+
+            // Get URL params for pre-filter
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialCategory = urlParams.get('category') || 'all';
+            if (initialCategory !== 'all') {
+                categoryFilter.value = initialCategory;
+            }
+
+            function renderProducts() {
+                const search = searchInput.value.toLowerCase().trim();
+                const category = categoryFilter.value;
+
+                let filtered = window.PRODUCTS.filter(p => {
+                    const matchName = p.name.toLowerCase().includes(search);
+                    const matchCategory = category === 'all' || p.category === category;
+                    return matchName && matchCategory;
+                });
+
+                resultCount.textContent = `${filtered.length} product${filtered.length !== 1 ? 's' : ''}`;
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = `<div class="col-12 text-center text-secondary-glow py-5">No products found.</div>`;
+                    return;
+                }
+
+                grid.innerHTML = filtered.map(p => `
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="product-card card-glass h-100 d-flex flex-column">
+                            <a href="product-detail.html?product=${p.id}" class="text-decoration-none">
+                                <div class="product-img-wrap position-relative">
+                                    <img src="${p.image}" alt="${p.name}" class="img-fluid w-100" style="height:200px;object-fit:cover;border-radius:12px 12px 0 0;" />
+                                    ${p.badge ? `<span class="badge bg-neon position-absolute top-0 end-0 m-2">${p.badge}</span>` : ''}
+                                </div>
+                            </a>
+                            <div class="p-3 d-flex flex-column flex-grow-1">
+                                <a href="product-detail.html?product=${p.id}" class="text-decoration-none">
+                                    <small class="text-secondary-glow">${p.category}</small>
+                                    <h6 class="fw-bold text-white mt-1">${p.name}</h6>
+                                </a>
+                                <div class="d-flex align-items-center gap-2 mt-1">
+                                    <span class="text-warning">${'★'.repeat(Math.floor(p.rating))}${p.rating % 1 >= 0.5 ? '★' : ''}</span>
+                                    <small class="text-secondary-glow">(${p.reviews})</small>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                                    <span class="h5 fw-bold gradient-text mb-0">$${p.price}</span>
+                                    <button class="btn btn-neon btn-sm add-to-cart" data-id="${p.id}">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Event listeners
+            searchInput.addEventListener('input', renderProducts);
+            categoryFilter.addEventListener('change', renderProducts);
+            clearBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                categoryFilter.value = 'all';
+                renderProducts();
+            });
+
+            // Initial render
+            renderProducts();
+
+            // Cart badge update
+            if (window.updateCartBadge) window.updateCartBadge();
+
+            // Add to cart event
+            document.addEventListener('click', function(e) {
+                const btn = e.target.closest('.add-to-cart');
+                if (btn) {
+                    e.preventDefault();
+                    const id = parseInt(btn.dataset.id);
+                    if (window.addToCart && !isNaN(id)) {
+                        window.addToCart(id);
+                        if (window.updateCartBadge) window.updateCartBadge();
+                        const orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="bi bi-check-lg"></i>';
+                        setTimeout(() => { btn.innerHTML = orig; }, 1200);
+                    }
+                }
+            });
+
+            window.addEventListener('cartUpdated', function() {
+                if (window.updateCartBadge) window.updateCartBadge();
+            });
+        })();
+    </script>
+</body>
+</html>
