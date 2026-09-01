@@ -3,290 +3,1599 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NovaStore — Futuristic E-Commerce</title>
+    <title>NOVA — Futuristic E‑Commerce</title>
 
     <!-- Bootstrap 5 + Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Orbitron (headings) + Inter (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* ================================================================
+                   MAXIMALIST FUTURISTIC STYLES
+                   ================================================================ */
+        :root {
+            --neon-blue: #00f0ff;
+            --neon-purple: #9d4eff;
+            --neon-pink: #ff4de8;
+            --neon-gradient: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            --neon-gradient-2: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            --bg-dark: #07090f;
+            --bg-surface: #0f1422;
+            --bg-card: rgba(18, 24, 44, 0.7);
+            --text-primary: #f0f4ff;
+            --text-secondary: #8899bb;
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --shadow-neon: 0 0 60px rgba(0, 240, 255, 0.08);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse at 10% 20%, rgba(0, 240, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 80%, rgba(157, 78, 255, 0.03) 0%, transparent 50%);
+        }
+
+        /* ---- Scrollbar ---- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-gradient);
+            border-radius: 10px;
+        }
+
+        /* ---- Typography ---- */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.03em;
+            font-weight: 700;
+        }
+
+        .gradient-text {
+            background: var(--neon-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-text-2 {
+            background: var(--neon-gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-secondary-glow {
+            color: var(--text-secondary);
+        }
+
+        /* ---- Glassmorphism ---- */
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px) saturate(1.2);
+            -webkit-backdrop-filter: blur(16px) saturate(1.2);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-neon);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass:hover {
+            border-color: rgba(0, 240, 255, 0.15);
+            box-shadow: 0 0 80px rgba(0, 240, 255, 0.05);
+            transform: translateY(-2px);
+        }
+        .glass-strong {
+            background: rgba(10, 14, 30, 0.85);
+            backdrop-filter: blur(24px) saturate(1.4);
+            -webkit-backdrop-filter: blur(24px) saturate(1.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-xl);
+        }
+
+        /* ---- Buttons ---- */
+        .btn-neon {
+            background: var(--neon-gradient);
+            border: none;
+            color: #07090f;
+            font-weight: 700;
+            padding: 0.7rem 2.2rem;
+            border-radius: 60px;
+            transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        .btn-neon:hover {
+            transform: scale(1.06) translateY(-2px);
+            box-shadow: 0 0 60px rgba(0, 240, 255, 0.5);
+            color: #07090f;
+        }
+        .btn-neon:active {
+            transform: scale(0.96);
+        }
+
+        .btn-outline-neon {
+            background: transparent;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-weight: 600;
+            padding: 0.7rem 2.2rem;
+            border-radius: 60px;
+            transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.02em;
+        }
+        .btn-outline-neon:hover {
+            background: var(--neon-gradient);
+            border-color: transparent;
+            color: #07090f;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-neon-sm {
+            padding: 0.4rem 1.4rem;
+            font-size: 0.75rem;
+        }
+        .btn-neon-lg {
+            padding: 0.9rem 3rem;
+            font-size: 1rem;
+        }
+
+        /* ---- Navbar ---- */
+        .neon-nav {
+            background: rgba(7, 9, 15, 0.88);
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.06);
+            padding: 0.7rem 0;
+            transition: all 0.3s ease;
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+        }
+        .neon-nav.scrolled {
+            background: rgba(7, 9, 15, 0.96);
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+        }
+        .brand-glow {
+            font-size: 1.9rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            letter-spacing: -0.02em;
+        }
+        .brand-dot {
+            color: var(--neon-blue);
+            font-size: 2.2rem;
+        }
+        .nav-link-custom {
+            color: var(--text-secondary) !important;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            position: relative;
+        }
+        .nav-link-custom:hover,
+        .nav-link-custom.active {
+            color: #ffffff !important;
+            background: rgba(0, 240, 255, 0.06);
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+        }
+        .nav-link-custom.active::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: var(--neon-gradient);
+            border-radius: 4px;
+        }
+        .cart-badge {
+            background: var(--neon-gradient);
+            color: #07090f;
+            font-weight: 700;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 30px;
+            min-width: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* ================================================================
+                   PAGE SECTIONS
+                   ================================================================ */
+        .page-section {
+            display: none;
+            animation: fadeSlide 0.5s ease forwards;
+            padding: 2rem 0 4rem;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---- HERO ---- */
+        .hero-wrap {
+            position: relative;
+            min-height: 82vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .hero-glow-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(0, 240, 255, 0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(157, 78, 255, 0.07) 0%, transparent 60%);
+        }
+        .hero-title {
+            font-size: clamp(2.8rem, 9vw, 5.6rem);
+            line-height: 1.05;
+            font-weight: 900;
+        }
+        .hero-sub {
+            font-size: 1.15rem;
+            max-width: 520px;
+            color: var(--text-secondary);
+        }
+        .hero-stats span {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .hero-stats small {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        /* floating cards */
+        .float-card {
+            position: absolute;
+            background: rgba(12, 18, 38, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: float 6s ease-in-out infinite;
+            min-width: 170px;
+        }
+        .float-card:nth-child(1) {
+            top: 8%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+        .float-card:nth-child(2) {
+            top: 38%;
+            left: 2%;
+            animation-delay: 2s;
+        }
+        .float-card:nth-child(3) {
+            top: 62%;
+            left: 22%;
+            animation-delay: 4s;
+        }
+        .float-card .icon-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(0, 240, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--neon-blue);
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-14px) rotate(1deg);
+            }
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: orbPulse 8s ease-in-out infinite;
+        }
+        .orb-1 {
+            width: 350px;
+            height: 350px;
+            top: -80px;
+            right: -60px;
+            background: rgba(0, 240, 255, 0.15);
+            animation-delay: 0s;
+        }
+        .orb-2 {
+            width: 250px;
+            height: 250px;
+            bottom: -40px;
+            left: -40px;
+            background: rgba(157, 78, 255, 0.15);
+            animation-delay: 3s;
+        }
+        @keyframes orbPulse {
+            0%,
+            100% {
+                transform: scale(1) translate(0, 0);
+                opacity: 0.25;
+            }
+            50% {
+                transform: scale(1.25) translate(20px, -20px);
+                opacity: 0.45;
+            }
+        }
+
+        /* ---- Categories ---- */
+        .cat-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1.8rem 1rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            height: 100%;
+        }
+        .cat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(0, 240, 255, 0.25);
+            box-shadow: 0 16px 60px rgba(0, 240, 255, 0.06);
+        }
+        .cat-card i {
+            font-size: 2.4rem;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        /* ---- Product Cards ---- */
+        .product-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 240, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .product-card .img-wrap {
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .product-card .img-wrap img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .product-card:hover .img-wrap img {
+            transform: scale(1.04);
+        }
+        .product-card .badge-neon {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--neon-gradient);
+            color: #07090f;
+            font-weight: 700;
+            font-size: 0.65rem;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .product-card .body {
+            padding: 1.2rem 1.2rem 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card .body .cat-tag {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .product-card .body .name {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin: 0.2rem 0 0.3rem;
+            color: #fff;
+        }
+        .product-card .body .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .stars {
+            color: #fbbf24;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+        .stars .empty {
+            color: #334155;
+        }
+
+        /* ---- Cart Table ---- */
+        .cart-table td,
+        .cart-table th {
+            border-color: rgba(255, 255, 255, 0.04);
+            padding: 1rem 0.75rem;
+            vertical-align: middle;
+        }
+        .cart-table .qty-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            background: transparent;
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+        .cart-table .qty-btn:hover {
+            background: rgba(0, 240, 255, 0.08);
+            border-color: var(--neon-blue);
+        }
+
+        /* ---- Checkout ---- */
+        .checkout-summary .item-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .checkout-summary .item-row:last-child {
+            border-bottom: none;
+        }
+
+        /* ---- Footer ---- */
+        .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 3rem 0 1.5rem;
+            margin-top: 2rem;
+        }
+        .footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: var(--neon-blue);
+        }
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+        .social-icon:hover {
+            border-color: var(--neon-blue);
+            color: var(--neon-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 240, 255, 0.08);
+        }
+
+        /* ---- Form elements ---- */
+        .form-neon {
+            background: rgba(10, 14, 30, 0.6) !important;
+            border: 1px solid rgba(0, 240, 255, 0.08) !important;
+            color: #fff !important;
+            border-radius: var(--radius-md);
+            padding: 0.7rem 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .form-neon:focus {
+            border-color: var(--neon-blue) !important;
+            box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.04);
+            background: rgba(10, 14, 30, 0.8) !important;
+        }
+        .form-neon::placeholder {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .form-neon-select {
+            background: rgba(10, 14, 30, 0.6) !important;
+            border: 1px solid rgba(0, 240, 255, 0.08) !important;
+            color: #fff !important;
+            border-radius: var(--radius-md);
+            padding: 0.7rem 1.2rem;
+        }
+        .form-neon-select option {
+            background: #0f1422;
+        }
+
+        /* ---- Utility ---- */
+        .bg-surface {
+            background: var(--bg-surface);
+        }
+        .border-glow {
+            border-color: rgba(0, 240, 255, 0.06);
+        }
+        .gap-2 {
+            gap: 0.5rem;
+        }
+        .gap-3 {
+            gap: 1rem;
+        }
+        .gap-4 {
+            gap: 1.5rem;
+        }
+        .gap-5 {
+            gap: 2rem;
+        }
+        .text-neon {
+            color: var(--neon-blue);
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 991px) {
+            .float-card {
+                display: none;
+            }
+            .hero-wrap {
+                min-height: 70vh;
+            }
+            .hero-stats {
+                justify-content: center !important;
+            }
+        }
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            .page-section {
+                padding: 1rem 0 2rem;
+            }
+            .product-card .img-wrap img {
+                height: 160px;
+            }
+            .cart-table td,
+            .cart-table th {
+                padding: 0.6rem 0.4rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ---- Toast notification ---- */
+        .toast-neon {
+            background: rgba(10, 14, 30, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 240, 255, 0.12);
+            border-radius: var(--radius-md);
+            color: #fff;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .toast-neon .toast-header {
+            background: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-secondary);
+        }
+        .toast-neon .btn-close {
+            filter: invert(1) brightness(0.8);
+        }
+
+        /* ---- Empty state ---- */
+        .empty-state {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--text-secondary);
+            opacity: 0.3;
+        }
+        .empty-state h5 {
+            margin-top: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        /* Shimmer loading placeholder */
+        .shimmer {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.02) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* ---- CTA banner ---- */
+        .cta-banner {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.04), rgba(157, 78, 255, 0.04));
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-xl);
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -20%;
+            width: 70%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.03), transparent 70%);
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- ========== NAVBAR (shared) ========== -->
-    <nav class="navbar navbar-expand-lg sticky-top neon-nav">
+    <!-- ============================================================= -->
+    <!-- NAVBAR                                                         -->
+    <!-- ============================================================= -->
+    <nav class="neon-nav" id="mainNav">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <span class="brand-glow">NOVA</span><span class="brand-dot">.</span>
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav mx-auto gap-2">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="product-detail.html?product=0">Featured</a></li>
-                </ul>
-                <div class="d-flex align-items-center gap-3">
-                    <a href="cart.html" class="nav-link position-relative" id="cartIconLink">
-                        <i class="bi bi-cart3 fs-5"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-neon" id="cartCount">0</span>
+            <div class="d-flex align-items-center justify-content-between">
+                <a class="navbar-brand d-flex align-items-center gap-1 text-decoration-none" href="#" onclick="navigateTo('home')">
+                    <span class="brand-glow">NOVA</span><span class="brand-dot">.</span>
+                </a>
+
+                <div class="d-flex align-items-center gap-2 gap-lg-4" id="navLinks">
+                    <a class="nav-link-custom active" href="#" data-page="home" onclick="navigateTo('home')">Home</a>
+                    <a class="nav-link-custom" href="#" data-page="products" onclick="navigateTo('products')">Products</a>
+                    <a class="nav-link-custom" href="#" data-page="detail" onclick="navigateTo('detail')">Detail</a>
+                    <a class="nav-link-custom position-relative" href="#" data-page="cart" onclick="navigateTo('cart')">
+                        <i class="bi bi-cart3 me-1"></i> Cart
+                        <span class="cart-badge position-absolute top-0 start-100 translate-middle" id="cartBadgeNav">0</span>
                     </a>
-                    <a href="checkout.html" class="btn btn-neon-outline btn-sm px-3">Checkout</a>
+                    <a class="nav-link-custom" href="#" data-page="checkout" onclick="navigateTo('checkout')">Checkout</a>
+                </div>
+
+                <button class="btn btn-neon btn-neon-sm d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse" aria-expanded="false">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+            <!-- mobile collapse -->
+            <div class="collapse mt-2" id="navCollapse">
+                <div class="d-flex flex-column gap-2 pb-2">
+                    <a class="nav-link-custom active" href="#" data-page="home" onclick="navigateTo('home')">Home</a>
+                    <a class="nav-link-custom" href="#" data-page="products" onclick="navigateTo('products')">Products</a>
+                    <a class="nav-link-custom" href="#" data-page="detail" onclick="navigateTo('detail')">Detail</a>
+                    <a class="nav-link-custom" href="#" data-page="cart" onclick="navigateTo('cart')"><i class="bi bi-cart3 me-1"></i> Cart <span class="cart-badge ms-1" id="cartBadgeMobile">0</span></a>
+                    <a class="nav-link-custom" href="#" data-page="checkout" onclick="navigateTo('checkout')">Checkout</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- ========== MAIN CONTENT ========== -->
-    <main>
+    <!-- ============================================================= -->
+    <!-- TOAST CONTAINER                                                -->
+    <!-- ============================================================= -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+        <div id="liveToast" class="toast toast-neon align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">
+                    <i class="bi bi-check-circle-fill text-neon me-2"></i> Added to cart!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
 
+    <!-- ============================================================= -->
+    <!-- PAGE: HOME                                                     -->
+    <!-- ============================================================= -->
+    <section class="page-section active" id="page-home">
         <!-- HERO -->
-        <section class="hero-section position-relative overflow-hidden">
+        <div class="hero-wrap">
             <div class="hero-glow-bg"></div>
-            <div class="container py-5 my-4">
-                <div class="row align-items-center min-vh-60">
-                    <div class="col-lg-6 text-center text-lg-start">
-                        <span class="badge bg-neon-soft px-3 py-2 mb-3 rounded-pill">
-                            <i class="bi bi-stars me-1"></i> Next-Gen Tech
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+
+            <!-- floating cards -->
+            <div class="float-card d-none d-xl-block">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="icon-wrap"><i class="bi bi-cpu"></i></div>
+                    <div><small class="text-secondary-glow" style="font-size:0.7rem;">Quantum X1</small><br /><strong>$999</strong></div>
+                </div>
+            </div>
+            <div class="float-card d-none d-xl-block" style="animation-delay:2s;">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="icon-wrap"><i class="bi bi-headphones"></i></div>
+                    <div><small class="text-secondary-glow" style="font-size:0.7rem;">Nova Buds</small><br /><strong>$249</strong></div>
+                </div>
+            </div>
+            <div class="float-card d-none d-xl-block" style="animation-delay:4s;">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="icon-wrap"><i class="bi bi-watch"></i></div>
+                    <div><small class="text-secondary-glow" style="font-size:0.7rem;">Cyber Watch</small><br /><strong>$399</strong></div>
+                </div>
+            </div>
+
+            <div class="container position-relative" style="z-index:2;">
+                <div class="row align-items-center min-vh-75">
+                    <div class="col-lg-7 text-center text-lg-start">
+                        <span class="badge bg-neon-soft px-3 py-2 rounded-pill mb-3" style="background:rgba(0,240,255,0.08);color:var(--neon-blue);border:1px solid rgba(0,240,255,0.08);">
+                            <i class="bi bi-stars me-1"></i> Next‑Gen Tech
                         </span>
-                        <h1 class="display-2 fw-bold hero-title">
+                        <h1 class="hero-title">
                             Future <br /><span class="gradient-text">is Now</span>
                         </h1>
-                        <p class="text-secondary-glow fs-5 mt-3 mb-4" style="max-width: 480px;">
-                            Explore the most advanced gadgets, designed for the world of tomorrow.
+                        <p class="hero-sub mt-3 mb-4">
+                            Explore the most advanced gadgets, engineered for tomorrow.
                             Premium quality. Zero compromise.
                         </p>
                         <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
-                            <a href="products.html" class="btn btn-neon btn-lg px-5">
+                            <a href="#" class="btn btn-neon btn-neon-lg" onclick="navigateTo('products')">
                                 <i class="bi bi-grid-3x3-gap-fill me-2"></i> Explore
                             </a>
-                            <a href="product-detail.html?product=0" class="btn btn-outline-neon btn-lg px-5">
+                            <a href="#" class="btn btn-outline-neon btn-neon-lg" onclick="navigateTo('detail')">
                                 <i class="bi bi-play-circle me-2"></i> Featured
                             </a>
                         </div>
-                        <div class="d-flex gap-5 mt-5 justify-content-center justify-content-lg-start">
-                            <div><span class="h3 fw-bold gradient-text">10+</span><br /><small class="text-secondary-glow">Products</small></div>
-                            <div><span class="h3 fw-bold gradient-text">4.9★</span><br /><small class="text-secondary-glow">Rating</small></div>
-                            <div><span class="h3 fw-bold gradient-text">24/7</span><br /><small class="text-secondary-glow">Support</small></div>
+                        <div class="hero-stats d-flex gap-5 mt-5 justify-content-center justify-content-lg-start">
+                            <div><span class="gradient-text">10+</span><br /><small>Products</small></div>
+                            <div><span class="gradient-text">4.9★</span><br /><small>Rating</small></div>
+                            <div><span class="gradient-text">24/7</span><br /><small>Support</small></div>
                         </div>
                     </div>
-                    <div class="col-lg-6 d-none d-lg-block">
-                        <div class="hero-visual position-relative">
-                            <div class="floating-card card-glass p-4" style="transform: rotate(-2deg) translateX(20px);">
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="bg-neon-soft rounded-3 p-2"><i class="bi bi-cpu fs-2"></i></div>
-                                    <div><small class="text-secondary-glow">Quantum X1</small><br /><strong class="text-white">$999</strong></div>
-                                </div>
-                            </div>
-                            <div class="floating-card card-glass p-4" style="transform: rotate(3deg) translateX(-30px) translateY(40px);">
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="bg-neon-soft rounded-3 p-2"><i class="bi bi-headphones fs-2"></i></div>
-                                    <div><small class="text-secondary-glow">Nova Buds</small><br /><strong class="text-white">$249</strong></div>
-                                </div>
-                            </div>
-                            <div class="floating-card card-glass p-4" style="transform: rotate(-1deg) translateX(50px) translateY(80px);">
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="bg-neon-soft rounded-3 p-2"><i class="bi bi-watch fs-2"></i></div>
-                                    <div><small class="text-secondary-glow">Cyber Watch</small><br /><strong class="text-white">$399</strong></div>
-                                </div>
-                            </div>
-                            <div class="hero-orb orb-1"></div>
-                            <div class="hero-orb orb-2"></div>
-                        </div>
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <!-- visual spacer -->
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- CATEGORIES -->
-        <section class="py-5">
-            <div class="container">
-                <div class="text-center mb-5">
-                    <span class="badge bg-neon-soft px-3 py-2 rounded-pill">Categories</span>
-                    <h2 class="display-5 fw-bold mt-2">Shop by <span class="gradient-text">Category</span></h2>
-                </div>
-                <div class="row g-4" id="categoryGrid"></div>
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <span class="badge bg-neon-soft px-3 py-2 rounded-pill" style="background:rgba(0,240,255,0.08);color:var(--neon-blue);">Categories</span>
+                <h2 class="display-5 fw-bold mt-2">Shop by <span class="gradient-text">Category</span></h2>
             </div>
-        </section>
+            <div class="row g-4" id="categoryGrid"></div>
+        </div>
 
-        <!-- FEATURED PRODUCTS -->
-        <section class="py-5 bg-dark-surface">
+        <!-- FEATURED -->
+        <div class="bg-surface py-5">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center mb-5">
                     <div>
-                        <span class="badge bg-neon-soft px-3 py-2 rounded-pill">Trending</span>
+                        <span class="badge bg-neon-soft px-3 py-2 rounded-pill" style="background:rgba(0,240,255,0.08);color:var(--neon-blue);">Trending</span>
                         <h2 class="display-5 fw-bold mt-2">Featured <span class="gradient-text">Products</span></h2>
                     </div>
-                    <a href="products.html" class="btn btn-outline-neon">View All <i class="bi bi-arrow-right ms-1"></i></a>
+                    <a href="#" class="btn btn-outline-neon" onclick="navigateTo('products')">View All <i class="bi bi-arrow-right ms-1"></i></a>
                 </div>
-                <div class="row g-4" id="featuredProducts"></div>
+                <div class="row g-4" id="featuredGrid"></div>
             </div>
-        </section>
+        </div>
 
-        <!-- NEWSLETTER / CTA -->
-        <section class="py-5">
-            <div class="container">
-                <div class="cta-card card-glass p-5 text-center position-relative overflow-hidden">
-                    <div class="cta-glow"></div>
-                    <h3 class="fw-bold display-6">Ready for the <span class="gradient-text">Future</span>?</h3>
-                    <p class="text-secondary-glow mx-auto" style="max-width: 500px;">
-                        Subscribe to get early access to new drops and exclusive offers.
-                    </p>
-                    <div class="d-flex flex-wrap gap-3 justify-content-center mt-3">
-                        <input type="email" class="form-control form-control-lg bg-transparent border-neon" style="max-width: 360px;" placeholder="Enter your email" />
-                        <button class="btn btn-neon btn-lg px-5">Subscribe</button>
+        <!-- CTA -->
+        <div class="container py-5">
+            <div class="cta-banner text-center">
+                <h3 class="display-6 fw-bold">Ready for the <span class="gradient-text">Future</span>?</h3>
+                <p class="text-secondary-glow mx-auto" style="max-width:500px;">Subscribe to get early access to new drops and exclusive offers.</p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center mt-3">
+                    <input type="email" class="form-control form-neon" style="max-width:340px;" placeholder="Enter your email" />
+                    <button class="btn btn-neon btn-neon-lg px-5">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- PAGE: PRODUCTS                                                 -->
+    <!-- ============================================================= -->
+    <section class="page-section" id="page-products">
+        <div class="container py-4">
+            <div class="row">
+                <!-- Sidebar filters -->
+                <div class="col-lg-3 mb-4">
+                    <div class="glass p-4 sticky-lg-top" style="top:100px;">
+                        <h5 class="fw-bold"><i class="bi bi-funnel me-2"></i>Filters</h5>
+                        <div class="mb-3">
+                            <label class="text-secondary-glow small">Search</label>
+                            <input type="text" id="searchInput" class="form-control form-neon" placeholder="Search products..." />
+                        </div>
+                        <div class="mb-3">
+                            <label class="text-secondary-glow small">Category</label>
+                            <select id="categoryFilter" class="form-select form-neon-select">
+                                <option value="all">All Categories</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-outline-neon w-100 btn-neon-sm" id="clearFilters">Clear Filters</button>
+                        <hr class="border-glow my-3" />
+                        <div class="text-secondary-glow small" id="resultCount">0 products</div>
+                    </div>
+                </div>
+
+                <!-- Product grid -->
+                <div class="col-lg-9">
+                    <h2 class="fw-bold mb-4"><span class="gradient-text">All</span> Products</h2>
+                    <div class="row g-4" id="productGrid"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- PAGE: DETAIL                                                  -->
+    <!-- ============================================================= -->
+    <section class="page-section" id="page-detail">
+        <div class="container py-4">
+            <div id="detailContainer">
+                <!-- populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- PAGE: CART                                                    -->
+    <!-- ============================================================= -->
+    <section class="page-section" id="page-cart">
+        <div class="container py-4">
+            <h2 class="fw-bold mb-4"><span class="gradient-text">Your</span> Cart</h2>
+            <div id="cartContainer"></div>
+            <div class="mt-4 d-flex flex-wrap gap-3 justify-content-between align-items-center">
+                <a href="#" class="btn btn-outline-neon" onclick="navigateTo('products')"><i class="bi bi-arrow-left me-2"></i>Continue Shopping</a>
+                <a href="#" class="btn btn-neon btn-neon-lg px-5" id="checkoutFromCart" onclick="navigateTo('checkout')">Proceed to Checkout</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- PAGE: CHECKOUT                                                -->
+    <!-- ============================================================= -->
+    <section class="page-section" id="page-checkout">
+        <div class="container py-4">
+            <h2 class="fw-bold mb-4"><span class="gradient-text">Checkout</span></h2>
+            <div class="row g-4">
+                <div class="col-lg-7">
+                    <div class="glass p-4">
+                        <h5 class="fw-bold">Shipping Information</h5>
+                        <form id="checkoutForm">
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="text-secondary-glow small">First name</label>
+                                    <input type="text" class="form-control form-neon" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="text-secondary-glow small">Last name</label>
+                                    <input type="text" class="form-control form-neon" required />
+                                </div>
+                                <div class="col-12">
+                                    <label class="text-secondary-glow small">Email address</label>
+                                    <input type="email" class="form-control form-neon" required />
+                                </div>
+                                <div class="col-12">
+                                    <label class="text-secondary-glow small">Street address</label>
+                                    <input type="text" class="form-control form-neon" required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="text-secondary-glow small">City</label>
+                                    <input type="text" class="form-control form-neon" required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="text-secondary-glow small">State</label>
+                                    <input type="text" class="form-control form-neon" required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="text-secondary-glow small">ZIP</label>
+                                    <input type="text" class="form-control form-neon" required />
+                                </div>
+                            </div>
+                            <hr class="border-glow my-4" />
+                            <h5 class="fw-bold">Payment</h5>
+                            <div class="row g-3 mt-2">
+                                <div class="col-12">
+                                    <label class="text-secondary-glow small">Card number</label>
+                                    <input type="text" class="form-control form-neon" placeholder="1234 5678 9012 3456" required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="text-secondary-glow small">Expiry</label>
+                                    <input type="text" class="form-control form-neon" placeholder="MM/YY" required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="text-secondary-glow small">CVV</label>
+                                    <input type="text" class="form-control form-neon" placeholder="123" required />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-neon btn-neon-lg w-100 mt-4">Place Order</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="glass p-4 sticky-lg-top" style="top:100px;">
+                        <h5 class="fw-bold">Order Summary</h5>
+                        <div id="orderSummary" class="checkout-summary mt-3"></div>
+                        <hr class="border-glow" />
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total</span>
+                            <span class="gradient-text h5" id="orderTotal">$0.00</span>
+                        </div>
+                        <button type="submit" form="checkoutForm" class="btn btn-neon w-100 mt-3">Place Order</button>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
-
-    <!-- ========== FOOTER ========== -->
-    <footer class="footer pt-5 pb-3 mt-5 border-top border-neon-subtle">
+    <!-- ============================================================= -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================= -->
+    <footer class="footer">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4">
-                    <a class="navbar-brand fw-bold" href="index.html">
+                    <a class="navbar-brand d-flex align-items-center gap-1 text-decoration-none" href="#" onclick="navigateTo('home')">
                         <span class="brand-glow">NOVA</span><span class="brand-dot">.</span>
                     </a>
-                    <p class="text-secondary-glow mt-2" style="max-width: 280px;">
-                        Pioneering the future of consumer tech. Built for those who dare to innovate.
-                    </p>
-                    <div class="d-flex gap-3 mt-3">
-                        <a href="#" class="text-secondary-glow hover-neon"><i class="bi bi-twitter-x fs-5"></i></a>
-                        <a href="#" class="text-secondary-glow hover-neon"><i class="bi bi-github fs-5"></i></a>
-                        <a href="#" class="text-secondary-glow hover-neon"><i class="bi bi-discord fs-5"></i></a>
-                        <a href="#" class="text-secondary-glow hover-neon"><i class="bi bi-youtube fs-5"></i></a>
+                    <p class="text-secondary-glow mt-2" style="max-width:280px;">Pioneering the future of consumer tech. Built for those who dare to innovate.</p>
+                    <div class="d-flex gap-2 mt-3">
+                        <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-discord"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-lg-2">
-                    <h6 class="fw-bold text-white">Shop</h6>
+                    <h6 class="fw-bold">Shop</h6>
                     <ul class="list-unstyled text-secondary-glow small">
-                        <li><a href="products.html" class="text-secondary-glow hover-neon text-decoration-none">All Products</a></li>
-                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Electronics</a></li>
-                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Audio</a></li>
-                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Wearables</a></li>
+                        <li><a href="#" onclick="navigateTo('products')">All Products</a></li>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Audio</a></li>
+                        <li><a href="#">Wearables</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-lg-2">
-                    <h6 class="fw-bold text-white">Support</h6>
+                    <h6 class="fw-bold">Support</h6>
                     <ul class="list-unstyled text-secondary-glow small">
-                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Help Center</a></li>
-                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Returns</a></li>
-                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Shipping</a></li>
-                        <li><a href="#" class="text-secondary-glow hover-neon text-decoration-none">Contact</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
-                    <h6 class="fw-bold text-white">Stay Connected</h6>
+                    <h6 class="fw-bold">Stay Connected</h6>
                     <p class="text-secondary-glow small">Get the latest drops and exclusive offers.</p>
                     <div class="d-flex gap-2">
-                        <input type="email" class="form-control form-control-sm bg-transparent border-neon" placeholder="Email" />
-                        <button class="btn btn-neon btn-sm">Join</button>
+                        <input type="email" class="form-control form-neon" placeholder="Email" style="flex:1;" />
+                        <button class="btn btn-neon btn-neon-sm">Join</button>
                     </div>
                 </div>
             </div>
-            <hr class="border-neon-subtle mt-4" />
-            <div class="text-center text-secondary-glow small">
-                &copy; 2026 <span class="text-white">NOVA</span>. Built for the future.
-            </div>
+            <hr class="border-glow mt-4" />
+            <div class="text-center text-secondary-glow small">&copy; 2026 <span class="text-white">NOVA</span>. Built for the future.</div>
         </div>
     </footer>
 
-    <!-- ========== SCRIPTS ========== -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/main.js"></script>
+    <!-- ============================================================= -->
+    <!-- SCRIPTS                                                       -->
+    <!-- ============================================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    </script>
 
-    <!-- Homepage-specific -->
     <script>
-        // Render categories and featured products
-        (function() {
-            const catContainer = document.getElementById('categoryGrid');
-            if (catContainer) {
-                const cats = [
-                    { name: 'Electronics', icon: 'bi-cpu', count: 4 },
-                    { name: 'Audio', icon: 'bi-headphones', count: 2 },
-                    { name: 'Wearables', icon: 'bi-watch', count: 2 },
-                    { name: 'Gaming', icon: 'bi-joystick', count: 1 },
-                    { name: 'Accessories', icon: 'bi-plug', count: 1 },
-                ];
-                catContainer.innerHTML = cats.map(c => `
-                    <div class="col-6 col-md-4 col-lg-2">
-                        <a href="products.html?category=${encodeURIComponent(c.name)}" class="text-decoration-none">
-                            <div class="category-card card-glass text-center p-4 h-100 d-flex flex-column align-items-center justify-content-center">
-                                <i class="bi ${c.icon} fs-1 gradient-text mb-2"></i>
-                                <span class="fw-bold text-white">${c.name}</span>
-                                <small class="text-secondary-glow">${c.count} items</small>
-                            </div>
-                        </a>
-                    </div>
-                `).join('');
-            }
+        // ================================================================
+        // DATA
+        // ================================================================
+        const PRODUCTS = [{
+            id: 0,
+            name: 'Quantum X1 Laptop',
+            category: 'Electronics',
+            price: 999,
+            rating: 4.8,
+            reviews: 124,
+            badge: 'New',
+            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Quantum+X1',
+            description: 'Next‑gen AI‑powered laptop with 32GB RAM and 1TB SSD. Ultra‑slim design with a 14" 4K OLED display.'
+        }, {
+            id: 1,
+            name: 'Nova Buds Pro',
+            category: 'Audio',
+            price: 249,
+            rating: 4.7,
+            reviews: 89,
+            badge: 'Bestseller',
+            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Nova+Buds',
+            description: 'Active noise‑canceling earbuds with spatial audio, 36h battery, and IPX5 water resistance.'
+        }, {
+            id: 2,
+            name: 'Cyber Watch 3',
+            category: 'Wearables',
+            price: 399,
+            rating: 4.6,
+            reviews: 67,
+            badge: null,
+            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Cyber+Watch',
+            description: 'Advanced health tracker with ECG, GPS, blood oxygen monitoring, and 7‑day battery life.'
+        }, {
+            id: 3,
+            name: 'Graviton Gaming Chair',
+            category: 'Gaming',
+            price: 599,
+            rating: 4.9,
+            reviews: 45,
+            badge: 'Limited',
+            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Graviton+Chair',
+            description: 'Ergonomic gaming chair with built‑in cooling, 4D armrests, and immersive RGB lighting.'
+        }, {
+            id: 4,
+            name: 'Neon Charging Dock',
+            category: 'Accessories',
+            price: 79,
+            rating: 4.3,
+            reviews: 32,
+            badge: null,
+            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Neon+Dock',
+            description: 'Wireless fast‑charging dock for phone, watch, and earbuds. Sleek futuristic design.'
+        }, {
+            id: 5,
+            name: 'Eclipse Monitor 32"',
+            category: 'Electronics',
+            price: 749,
+            rating: 4.8,
+            reviews: 56,
+            badge: 'New',
+            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Eclipse+Monitor',
+            description: '4K OLED display with 144Hz refresh rate, HDR1000, and ultra‑thin bezels.'
+        }, {
+            id: 6,
+            name: 'Orbit Keyboard',
+            category: 'Electronics',
+            price: 189,
+            rating: 4.5,
+            reviews: 78,
+            badge: null,
+            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Orbit+Keyboard',
+            description: 'Mechanical keyboard with hot‑swap switches, customizable RGB, and a premium aluminum frame.'
+        }, {
+            id: 7,
+            name: 'Aura Smart Glasses',
+            category: 'Wearables',
+            price: 299,
+            rating: 4.2,
+            reviews: 23,
+            badge: 'Pre‑order',
+            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Aura+Glasses',
+            description: 'AR glasses with heads‑up display, voice assistant, and 8MP camera for hands‑free capture.'
+        }, {
+            id: 8,
+            name: 'Pulse Soundbar',
+            category: 'Audio',
+            price: 449,
+            rating: 4.7,
+            reviews: 41,
+            badge: null,
+            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Pulse+Soundbar',
+            description: 'Dolby Atmos soundbar with wireless subwoofer, 360° audio, and HDMI eARC.'
+        }, {
+            id: 9,
+            name: 'Vertex Mouse',
+            category: 'Accessories',
+            price: 59,
+            rating: 4.4,
+            reviews: 29,
+            badge: null,
+            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Vertex+Mouse',
+            description: 'Ultra‑light gaming mouse with 16K DPI, 8 programmable buttons, and PTFE feet.'
+        }];
 
-            const featContainer = document.getElementById('featuredProducts');
-            if (featContainer && window.PRODUCTS) {
-                const featured = window.PRODUCTS.slice(0, 4);
-                featContainer.innerHTML = featured.map(p => `
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="product-card card-glass h-100 d-flex flex-column">
-                            <div class="product-img-wrap position-relative">
-                                <img src="${p.image}" alt="${p.name}" class="img-fluid w-100" style="height:200px;object-fit:cover;border-radius:12px 12px 0 0;" />
-                                ${p.badge ? `<span class="badge bg-neon position-absolute top-0 end-0 m-2">${p.badge}</span>` : ''}
-                            </div>
-                            <div class="p-3 d-flex flex-column flex-grow-1">
-                                <small class="text-secondary-glow">${p.category}</small>
-                                <h6 class="fw-bold text-white mt-1">${p.name}</h6>
-                                <div class="d-flex align-items-center gap-2 mt-1">
-                                    <span class="text-warning">${'★'.repeat(Math.floor(p.rating))}${p.rating % 1 >= 0.5 ? '★' : ''}</span>
-                                    <small class="text-secondary-glow">(${p.reviews})</small>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
-                                    <span class="h5 fw-bold gradient-text mb-0">$${p.price}</span>
-                                    <button class="btn btn-neon btn-sm add-to-cart" data-id="${p.id}">
-                                        <i class="bi bi-cart-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
+        // ================================================================
+        // CART (localStorage)
+        // ================================================================
+        function getCart() {
+            try { return JSON.parse(localStorage.getItem('novaCart')) || []; } catch { return []; }
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('novaCart', JSON.stringify(cart));
+            updateBadges();
+            window.dispatchEvent(new Event('cartUpdated'));
+        }
+
+        function addToCart(id) {
+            const cart = getCart();
+            const existing = cart.find(i => i.id === id);
+            if (existing) existing.qty += 1;
+            else cart.push({ id, qty: 1 });
+            saveCart(cart);
+            showToast('Added to cart!', 'success');
+        }
+
+        function removeFromCart(id) {
+            let cart = getCart();
+            cart = cart.filter(i => i.id !== id);
+            saveCart(cart);
+        }
+
+        function updateQty(id, delta) {
+            const cart = getCart();
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            const newQty = item.qty + delta;
+            if (newQty <= 0) removeFromCart(id);
+            else { item.qty = newQty;
+                saveCart(cart); }
+        }
+
+        function getCartCount() {
+            return getCart().reduce((s, i) => s + i.qty, 0);
+        }
+
+        function getCartTotal() {
+            return getCart().reduce((s, i) => {
+                const p = PRODUCTS.find(x => x.id === i.id);
+                return s + (p ? p.price * i.qty : 0);
+            }, 0);
+        }
+
+        function clearCart() {
+            saveCart([]);
+        }
+
+        function updateBadges() {
+            const count = getCartCount();
+            document.querySelectorAll('#cartBadgeNav, #cartBadgeMobile').forEach(el => {
+                el.textContent = count;
+                el.style.display = count > 0 ? 'inline-block' : 'none';
+            });
+        }
+
+        // ================================================================
+        // TOAST
+        // ================================================================
+        let toastInstance = null;
+
+        function showToast(msg, type) {
+            const toastEl = document.getElementById('liveToast');
+            const body = document.getElementById('toastMessage');
+            body.innerHTML = `<i class="bi bi-${type === 'success' ? 'check-circle-fill text-neon' : 'exclamation-circle-fill text-warning'} me-2"></i> ${msg}`;
+            if (!toastInstance) toastInstance = new bootstrap.Toast(toastEl, { delay: 2500 });
+            toastInstance.show();
+        }
+
+        // ================================================================
+        // NAVIGATION
+        // ================================================================
+        let currentPage = 'home';
+
+        function navigateTo(page) {
+            currentPage = page;
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById('page-' + page);
+            if (target) target.classList.add('active');
+
+            // update nav links
+            document.querySelectorAll('.nav-link-custom').forEach(el => {
+                el.classList.toggle('active', el.dataset.page === page);
+            });
+
+            // if detail page, render the product
+            if (page === 'detail') renderDetail();
+            if (page === 'cart') renderCart();
+            if (page === 'checkout') renderCheckoutSummary();
+
+            // scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ================================================================
+        // RENDER: Categories
+        // ================================================================
+        function renderCategories() {
+            const container = document.getElementById('categoryGrid');
+            if (!container) return;
+            const cats = [
+                { name: 'Electronics', icon: 'bi-cpu', count: 3 },
+                { name: 'Audio', icon: 'bi-headphones', count: 2 },
+                { name: 'Wearables', icon: 'bi-watch', count: 2 },
+                { name: 'Gaming', icon: 'bi-joystick', count: 1 },
+                { name: 'Accessories', icon: 'bi-plug', count: 2 },
+            ];
+            container.innerHTML = cats.map(c => `
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="cat-card" onclick="navigateTo('products')">
+                            <i class="bi ${c.icon} gradient-text"></i>
+                            <div class="fw-bold">${c.name}</div>
+                            <small class="text-secondary-glow">${c.count} items</small>
                         </div>
                     </div>
                 `).join('');
+        }
+
+        // ================================================================
+        // RENDER: Featured
+        // ================================================================
+        function renderFeatured() {
+            const container = document.getElementById('featuredGrid');
+            if (!container) return;
+            const featured = PRODUCTS.slice(0, 4);
+            container.innerHTML = featured.map(p => productCardHTML(p)).join('');
+        }
+
+        // ================================================================
+        // RENDER: Products (with filters)
+        // ================================================================
+        function renderProductGrid() {
+            const grid = document.getElementById('productGrid');
+            const search = document.getElementById('searchInput')?.value?.toLowerCase()?.trim() || '';
+            const category = document.getElementById('categoryFilter')?.value || 'all';
+            const countEl = document.getElementById('resultCount');
+
+            let filtered = PRODUCTS.filter(p => {
+                const matchName = p.name.toLowerCase().includes(search);
+                const matchCat = category === 'all' || p.category === category;
+                return matchName && matchCat;
+            });
+
+            if (countEl) countEl.textContent = filtered.length + ' product' + (filtered.length !== 1 ? 's' : '');
+
+            if (!grid) return;
+            if (filtered.length === 0) {
+                grid.innerHTML =
+                    `<div class="col-12 text-center text-secondary-glow py-5"><i class="bi bi-search fs-1 d-block mb-3 opacity-25"></i>No products found.</div>`;
+                return;
+            }
+            grid.innerHTML = filtered.map(p => productCardHTML(p, true)).join('');
+        }
+
+        // ================================================================
+        // RENDER: Product Card HTML
+        // ================================================================
+        function productCardHTML(p, showLink = false) {
+            const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '★' : '');
+            const empty = '★'.repeat(5 - Math.ceil(p.rating));
+            return `
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="product-card">
+                            <div class="img-wrap">
+                                <img src="${p.image}" alt="${p.name}" loading="lazy" />
+                                ${p.badge ? `<span class="badge-neon">${p.badge}</span>` : ''}
+                            </div>
+                            <div class="body">
+                                <div class="cat-tag">${p.category}</div>
+                                <div class="name">${p.name}</div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="stars">${stars}<span class="empty">${empty}</span></span>
+                                    <small class="text-secondary-glow">(${p.reviews})</small>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                                    <span class="price gradient-text">$${p.price}</span>
+                                    <button class="btn btn-neon btn-neon-sm add-cart-btn" data-id="${p.id}">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </div>
+                                ${showLink ? `<div class="mt-2"><a href="#" class="text-neon small" onclick="navigateTo('detail'); return false;">View details →</a></div>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        // ================================================================
+        // RENDER: Detail
+        // ================================================================
+        let detailProductId = 0;
+
+        function renderDetail() {
+            const container = document.getElementById('detailContainer');
+            if (!container) return;
+            // Use first product if none selected
+            const p = PRODUCTS.find(x => x.id === detailProductId) || PRODUCTS[0];
+            const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '★' : '');
+            const empty = '★'.repeat(5 - Math.ceil(p.rating));
+
+            container.innerHTML = `
+                    <div class="row g-5 align-items-start">
+                        <div class="col-md-6">
+                            <div class="glass p-3">
+                                <img src="${p.image}" alt="${p.name}" class="img-fluid w-100 rounded-3" style="max-height:500px;object-fit:cover;" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="badge bg-neon-soft px-3 py-2 rounded-pill" style="background:rgba(0,240,255,0.08);color:var(--neon-blue);">${p.category}</span>
+                            <h1 class="fw-bold display-5 mt-2">${p.name}</h1>
+                            <div class="d-flex align-items-center gap-2 mt-2">
+                                <span class="stars">${stars}<span class="empty">${empty}</span></span>
+                                <span class="text-secondary-glow">(${p.reviews} reviews)</span>
+                            </div>
+                            <p class="text-secondary-glow mt-3" style="font-size:1.1rem;">${p.description}</p>
+                            <div class="h2 fw-bold gradient-text mt-3">$${p.price}</div>
+                            <div class="mt-4 d-flex flex-wrap gap-3">
+                                <button class="btn btn-neon btn-neon-lg px-5 add-cart-btn" data-id="${p.id}">
+                                    <i class="bi bi-cart-plus me-2"></i> Add to Cart
+                                </button>
+                                <a href="#" class="btn btn-outline-neon btn-neon-lg" onclick="navigateTo('products')">Browse All</a>
+                            </div>
+                            <div class="mt-4 text-secondary-glow small">
+                                <i class="bi bi-truck me-1"></i> Free shipping
+                                <span class="mx-2">|</span>
+                                <i class="bi bi-arrow-repeat me-1"></i> 30-day returns
+                                <span class="mx-2">|</span>
+                                <i class="bi bi-shield-check me-1"></i> 2-year warranty
+                            </div>
+                            <div class="mt-3 d-flex gap-3">
+                                <button class="btn btn-outline-neon btn-neon-sm" onclick="detailProductId = Math.max(0, detailProductId-1); renderDetail();"><i class="bi bi-chevron-left"></i> Prev</button>
+                                <button class="btn btn-outline-neon btn-neon-sm" onclick="detailProductId = Math.min(PRODUCTS.length-1, detailProductId+1); renderDetail();">Next <i class="bi bi-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        // ================================================================
+        // RENDER: Cart
+        // ================================================================
+        function renderCart() {
+            const container = document.getElementById('cartContainer');
+            if (!container) return;
+            const cart = getCart();
+            if (cart.length === 0) {
+                container.innerHTML = `
+                        <div class="empty-state glass">
+                            <i class="bi bi-cart-x"></i>
+                            <h5>Your cart is empty</h5>
+                            <p class="text-secondary-glow">Explore our futuristic collection.</p>
+                            <a href="#" class="btn btn-neon mt-2" onclick="navigateTo('products')">Start Shopping</a>
+                        </div>
+                    `;
+                document.getElementById('checkoutFromCart').style.display = 'none';
+                return;
+            }
+            document.getElementById('checkoutFromCart').style.display = 'inline-block';
+
+            let html = `<div class="table-responsive"><table class="table cart-table text-white">
+                        <thead><tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th><th></th></tr></thead><tbody>`;
+            let total = 0;
+            cart.forEach(item => {
+                const p = PRODUCTS.find(x => x.id === item.id);
+                if (!p) return;
+                const subtotal = p.price * item.qty;
+                total += subtotal;
+                html += `
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="${p.image}" alt="${p.name}" style="width:56px;height:56px;object-fit:cover;border-radius:10px;" />
+                                    <div><div class="fw-bold">${p.name}</div><small class="text-secondary-glow">${p.category}</small></div>
+                                </div>
+                            </td>
+                            <td>$${p.price.toFixed(2)}</td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <button class="qty-btn" onclick="updateQty(${p.id}, -1); renderCart();"><i class="bi bi-dash"></i></button>
+                                    <span class="fw-bold">${item.qty}</span>
+                                    <button class="qty-btn" onclick="updateQty(${p.id}, 1); renderCart();"><i class="bi bi-plus"></i></button>
+                                </div>
+                            </td>
+                            <td class="fw-bold">$${subtotal.toFixed(2)}</td>
+                            <td><button class="btn btn-outline-danger btn-sm" onclick="removeFromCart(${p.id}); renderCart();"><i class="bi bi-trash"></i></button></td>
+                        </tr>
+                    `;
+            });
+            html += `</tbody><tfoot><tr><td colspan="3" class="text-end fw-bold">Total</td>
+                        <td class="fw-bold gradient-text h5">$${total.toFixed(2)}</td><td></td></tr></tfoot></table></div>`;
+            container.innerHTML = html;
+        }
+
+        // ================================================================
+        // RENDER: Checkout Summary
+        // ================================================================
+        function renderCheckoutSummary() {
+            const container = document.getElementById('orderSummary');
+            const totalEl = document.getElementById('orderTotal');
+            if (!container || !totalEl) return;
+            const cart = getCart();
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-secondary-glow">Your cart is empty.</p>`;
+                totalEl.textContent = '$0.00';
+                return;
+            }
+            let html = '';
+            let total = 0;
+            cart.forEach(item => {
+                const p = PRODUCTS.find(x => x.id === item.id);
+                if (!p) return;
+                total += p.price * item.qty;
+                html += `
+                        <div class="item-row">
+                            <span>${p.name} × ${item.qty}</span>
+                            <span>$${(p.price * item.qty).toFixed(2)}</span>
+                        </div>
+                    `;
+            });
+            container.innerHTML = html;
+            totalEl.textContent = '$' + total.toFixed(2);
+        }
+
+        // ================================================================
+        // EVENT BINDING
+        // ================================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Categories
+            renderCategories();
+            // Featured
+            renderFeatured();
+            // Product grid
+            renderProductGrid();
+
+            // Populate category filter
+            const filter = document.getElementById('categoryFilter');
+            if (filter) {
+                const cats = [...new Set(PRODUCTS.map(p => p.category))];
+                cats.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c;
+                    opt.textContent = c;
+                    filter.appendChild(opt);
+                });
             }
 
-            // Update cart badge
-            if (window.updateCartBadge) window.updateCartBadge();
-        })();
+            // Filter events
+            document.getElementById('searchInput')?.addEventListener('input', renderProductGrid);
+            document.getElementById('categoryFilter')?.addEventListener('change', renderProductGrid);
+            document.getElementById('clearFilters')?.addEventListener('click', function() {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('categoryFilter').value = 'all';
+                renderProductGrid();
+            });
 
-        // Add to cart event delegation
-        document.addEventListener('click', function(e) {
-            const btn = e.target.closest('.add-to-cart');
-            if (btn) {
+            // Add to cart (delegated)
+            document.addEventListener('click', function(e) {
+                const btn = e.target.closest('.add-cart-btn');
+                if (btn) {
+                    e.preventDefault();
+                    const id = parseInt(btn.dataset.id);
+                    if (!isNaN(id)) {
+                        addToCart(id);
+                        const orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="bi bi-check-lg"></i>';
+                        setTimeout(() => btn.innerHTML = orig, 1200);
+                        // re-render cart if on cart page
+                        if (currentPage === 'cart') renderCart();
+                        if (currentPage === 'checkout') renderCheckoutSummary();
+                    }
+                }
+            });
+
+            // Checkout form
+            document.getElementById('checkoutForm')?.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const id = parseInt(btn.dataset.id);
-                if (window.addToCart && !isNaN(id)) {
-                    window.addToCart(id);
-                    if (window.updateCartBadge) window.updateCartBadge();
-                    const orig = btn.innerHTML;
-                    btn.innerHTML = '<i class="bi bi-check-lg"></i>';
-                    setTimeout(() => { btn.innerHTML = orig; }, 1200);
+                if (getCart().length === 0) {
+                    showToast('Your cart is empty!', 'warning');
+                    return;
+                }
+                showToast('Order placed! Welcome to the future. 🚀', 'success');
+                clearCart();
+                renderCart();
+                renderCheckoutSummary();
+                updateBadges();
+                setTimeout(() => navigateTo('home'), 800);
+            });
+
+            // Update badges
+            updateBadges();
+
+            // Listen for cart changes
+            window.addEventListener('cartUpdated', function() {
+                updateBadges();
+                if (currentPage === 'cart') renderCart();
+                if (currentPage === 'checkout') renderCheckoutSummary();
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const nav = document.getElementById('mainNav');
+                if (window.scrollY > 50) nav.classList.add('scrolled');
+                else nav.classList.remove('scrolled');
+            });
+
+            // Initial detail render
+            renderDetail();
+
+            // If coming from a product click, set detailProductId
+            // check URL hash for product id
+            const hash = window.location.hash;
+            if (hash.startsWith('#product=')) {
+                const id = parseInt(hash.split('=')[1]);
+                if (!isNaN(id) && id >= 0 && id < PRODUCTS.length) {
+                    detailProductId = id;
+                    navigateTo('detail');
                 }
             }
         });
 
-        // Listen for cart updates
-        window.addEventListener('cartUpdated', function() {
-            if (window.updateCartBadge) window.updateCartBadge();
-        });
+        // Expose for inline onclick
+        window.navigateTo = navigateTo;
+        window.addToCart = addToCart;
+        window.removeFromCart = removeFromCart;
+        window.updateQty = updateQty;
+        window.renderCart = renderCart;
+        window.renderDetail = renderDetail;
+        window.detailProductId = 0;
+        window.PRODUCTS = PRODUCTS;
+        window.getCart = getCart;
+        window.clearCart = clearCart;
+        window.renderCheckoutSummary = renderCheckoutSummary;
+
+        console.log('🚀 NOVA — Futuristic E‑Commerce loaded.');
+        console.log('📦 Products:', PRODUCTS.length);
+        console.log('🛒 Cart items:', getCartCount());
     </script>
+
 </body>
 </html>
