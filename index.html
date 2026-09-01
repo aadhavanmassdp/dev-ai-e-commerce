@@ -699,6 +699,15 @@
             background: radial-gradient(circle, rgba(0, 240, 255, 0.03), transparent 70%);
             pointer-events: none;
         }
+
+        /* ---- "Checkout" badge on product cards (now we use only "Add") ---- */
+        .btn-cart-action {
+            min-width: 90px;
+            transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn-cart-action .btn-text {
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -717,6 +726,10 @@
                     <a class="nav-link-custom active" href="#" data-page="home" onclick="navigateTo('home')">Home</a>
                     <a class="nav-link-custom" href="#" data-page="products" onclick="navigateTo('products')">Products</a>
                     <a class="nav-link-custom" href="#" data-page="detail" onclick="navigateTo('detail')">Detail</a>
+                    <!-- Login link added -->
+                    <a class="nav-link-custom" href="#" data-page="login" onclick="navigateTo('login')">
+                        <i class="bi bi-person-circle me-1"></i> Login
+                    </a>
                     <a class="nav-link-custom position-relative" href="#" data-page="cart" onclick="navigateTo('cart')">
                         <i class="bi bi-cart3 me-1"></i> Cart
                         <span class="cart-badge position-absolute top-0 start-100 translate-middle" id="cartBadgeNav">0</span>
@@ -734,6 +747,7 @@
                     <a class="nav-link-custom active" href="#" data-page="home" onclick="navigateTo('home')">Home</a>
                     <a class="nav-link-custom" href="#" data-page="products" onclick="navigateTo('products')">Products</a>
                     <a class="nav-link-custom" href="#" data-page="detail" onclick="navigateTo('detail')">Detail</a>
+                    <a class="nav-link-custom" href="#" data-page="login" onclick="navigateTo('login')"><i class="bi bi-person-circle me-1"></i> Login</a>
                     <a class="nav-link-custom" href="#" data-page="cart" onclick="navigateTo('cart')"><i class="bi bi-cart3 me-1"></i> Cart <span class="cart-badge ms-1" id="cartBadgeMobile">0</span></a>
                     <a class="nav-link-custom" href="#" data-page="checkout" onclick="navigateTo('checkout')">Checkout</a>
                 </div>
@@ -902,6 +916,46 @@
     </section>
 
     <!-- ============================================================= -->
+    <!-- PAGE: LOGIN (new)                                             -->
+    <!-- ============================================================= -->
+    <section class="page-section" id="page-login">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="glass p-4 p-md-5">
+                        <div class="text-center mb-4">
+                            <i class="bi bi-person-circle display-3 gradient-text"></i>
+                            <h2 class="fw-bold mt-2"><span class="gradient-text">Welcome Back</span></h2>
+                            <p class="text-secondary-glow">Sign in to your account</p>
+                        </div>
+                        <form id="loginForm" onsubmit="handleLogin(event)">
+                            <div class="mb-3">
+                                <label class="text-secondary-glow small">Email address</label>
+                                <input type="email" class="form-control form-neon" placeholder="you@example.com" required />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text-secondary-glow small">Password</label>
+                                <input type="password" class="form-control form-neon" placeholder="••••••••" required />
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rememberMe" style="background-color:rgba(0,240,255,0.1);border-color:rgba(0,240,255,0.3);" />
+                                    <label class="form-check-label text-secondary-glow small" for="rememberMe">Remember me</label>
+                                </div>
+                                <a href="#" class="text-neon small">Forgot password?</a>
+                            </div>
+                            <button type="submit" class="btn btn-neon w-100 btn-neon-lg">Sign In</button>
+                        </form>
+                        <p class="text-center text-secondary-glow small mt-3">
+                            Don't have an account? <a href="#" class="text-neon">Sign up</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================= -->
     <!-- PAGE: CART                                                    -->
     <!-- ============================================================= -->
     <section class="page-section" id="page-cart">
@@ -1060,7 +1114,7 @@
             rating: 4.8,
             reviews: 124,
             badge: 'New',
-            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Quantum+X1',
+            image: 'https://vlebazaar.in/image/cache/catalog/818cIclbdKL._SL1500_-1200x1200.jpg.webp',
             description: 'Next‑gen AI‑powered laptop with 32GB RAM and 1TB SSD. Ultra‑slim design with a 14" 4K OLED display.'
         }, {
             id: 1,
@@ -1070,7 +1124,7 @@
             rating: 4.7,
             reviews: 89,
             badge: 'Bestseller',
-            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Nova+Buds',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-P2zpaRDHQpMylD2LxNrKLHntxaQBDjBgrl_6eIaW9g&s',
             description: 'Active noise‑canceling earbuds with spatial audio, 36h battery, and IPX5 water resistance.'
         }, {
             id: 2,
@@ -1080,7 +1134,7 @@
             rating: 4.6,
             reviews: 67,
             badge: null,
-            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Cyber+Watch',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShCt0b0CoAkgec6Q4ED5YHnSljMapwnCYdjKdUVQmdDA&s=10',
             description: 'Advanced health tracker with ECG, GPS, blood oxygen monitoring, and 7‑day battery life.'
         }, {
             id: 3,
@@ -1090,7 +1144,7 @@
             rating: 4.9,
             reviews: 45,
             badge: 'Limited',
-            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Graviton+Chair',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQT8VWvqJvRC9FMKRM6gsXhhvha5JCMg0Z6aXwIFru8g&s=10',
             description: 'Ergonomic gaming chair with built‑in cooling, 4D armrests, and immersive RGB lighting.'
         }, {
             id: 4,
@@ -1100,7 +1154,7 @@
             rating: 4.3,
             reviews: 32,
             badge: null,
-            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Neon+Dock',
+            image: 'https://www.elstarled.com/wp-content/uploads/2023/10/Types-of-Neon-Signs.webp',
             description: 'Wireless fast‑charging dock for phone, watch, and earbuds. Sleek futuristic design.'
         }, {
             id: 5,
@@ -1110,7 +1164,7 @@
             rating: 4.8,
             reviews: 56,
             badge: 'New',
-            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Eclipse+Monitor',
+            image: 'http://www.ecomed.com.au/wp-content/uploads/2021/04/eclipse-mini-image.png',
             description: '4K OLED display with 144Hz refresh rate, HDR1000, and ultra‑thin bezels.'
         }, {
             id: 6,
@@ -1120,7 +1174,7 @@
             rating: 4.5,
             reviews: 78,
             badge: null,
-            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Orbit+Keyboard',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXMS3a5Z9oLgPcTLXL44Cku0al63ki9j7PeXdLwqtFJA&s=10',
             description: 'Mechanical keyboard with hot‑swap switches, customizable RGB, and a premium aluminum frame.'
         }, {
             id: 7,
@@ -1130,7 +1184,7 @@
             rating: 4.2,
             reviews: 23,
             badge: 'Pre‑order',
-            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Aura+Glasses',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcvmQqa-rPdhj1L1t25pB8FgArFxSzPUL7sGw1APK3Qw&s=10',
             description: 'AR glasses with heads‑up display, voice assistant, and 8MP camera for hands‑free capture.'
         }, {
             id: 8,
@@ -1140,7 +1194,7 @@
             rating: 4.7,
             reviews: 41,
             badge: null,
-            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Pulse+Soundbar',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE2srbKzOlr90rAMT8YLTwPyJ1vHHuYFx-SMQB50Ri9A&s=10',
             description: 'Dolby Atmos soundbar with wireless subwoofer, 360° audio, and HDMI eARC.'
         }, {
             id: 9,
@@ -1150,7 +1204,7 @@
             rating: 4.4,
             reviews: 29,
             badge: null,
-            image: 'https://placehold.co/600x400/0b0d17/00f0ff?text=Vertex+Mouse',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSCruLRM4_mgaJXzq6iq0EJ_pF5bz4Ph299pu-6rY42D2UH9xgfXWJGlA&s=10',
             description: 'Ultra‑light gaming mouse with 16K DPI, 8 programmable buttons, and PTFE feet.'
         }];
 
@@ -1165,6 +1219,12 @@
             localStorage.setItem('novaCart', JSON.stringify(cart));
             updateBadges();
             window.dispatchEvent(new Event('cartUpdated'));
+            // Re-render product grids and detail when cart changes
+            renderProductGrid();
+            renderFeatured();
+            if (currentPage === 'detail') renderDetail();
+            if (currentPage === 'cart') renderCart();
+            if (currentPage === 'checkout') renderCheckoutSummary();
         }
 
         function addToCart(id) {
@@ -1173,7 +1233,7 @@
             if (existing) existing.qty += 1;
             else cart.push({ id, qty: 1 });
             saveCart(cart);
-            showToast('Added to cart!', 'success');
+            showToast('Added to cart! 🚀', 'success');
         }
 
         function removeFromCart(id) {
@@ -1207,6 +1267,10 @@
             saveCart([]);
         }
 
+        function isInCart(id) {
+            return getCart().some(i => i.id === id);
+        }
+
         function updateBadges() {
             const count = getCartCount();
             document.querySelectorAll('#cartBadgeNav, #cartBadgeMobile').forEach(el => {
@@ -1223,7 +1287,8 @@
         function showToast(msg, type) {
             const toastEl = document.getElementById('liveToast');
             const body = document.getElementById('toastMessage');
-            body.innerHTML = `<i class="bi bi-${type === 'success' ? 'check-circle-fill text-neon' : 'exclamation-circle-fill text-warning'} me-2"></i> ${msg}`;
+            body.innerHTML =
+                `<i class="bi bi-${type === 'success' ? 'check-circle-fill text-neon' : 'exclamation-circle-fill text-warning'} me-2"></i> ${msg}`;
             if (!toastInstance) toastInstance = new bootstrap.Toast(toastEl, { delay: 2500 });
             toastInstance.show();
         }
@@ -1319,6 +1384,12 @@
         function productCardHTML(p, showLink = false) {
             const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '★' : '');
             const empty = '★'.repeat(5 - Math.ceil(p.rating));
+            // Always show "Add to Cart" button (redirects to checkout)
+            const actionBtn =
+                `<button class="btn btn-neon btn-neon-sm btn-cart-action" data-id="${p.id}" data-action="add">
+                        <i class="bi bi-cart-plus"></i> <span class="btn-text">Add</span>
+                    </button>`;
+
             return `
                     <div class="col-sm-6 col-lg-3">
                         <div class="product-card">
@@ -1335,9 +1406,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
                                     <span class="price gradient-text">$${p.price}</span>
-                                    <button class="btn btn-neon btn-neon-sm add-cart-btn" data-id="${p.id}">
-                                        <i class="bi bi-cart-plus"></i>
-                                    </button>
+                                    ${actionBtn}
                                 </div>
                                 ${showLink ? `<div class="mt-2"><a href="#" class="text-neon small" onclick="navigateTo('detail'); return false;">View details →</a></div>` : ''}
                             </div>
@@ -1354,10 +1423,15 @@
         function renderDetail() {
             const container = document.getElementById('detailContainer');
             if (!container) return;
-            // Use first product if none selected
             const p = PRODUCTS.find(x => x.id === detailProductId) || PRODUCTS[0];
             const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '★' : '');
             const empty = '★'.repeat(5 - Math.ceil(p.rating));
+
+            // Always show "Add to Cart" button (redirects to checkout)
+            const actionBtn =
+                `<button class="btn btn-neon btn-neon-lg px-5 add-cart-btn" data-id="${p.id}" data-action="add">
+                        <i class="bi bi-cart-plus me-2"></i> Add to Cart
+                    </button>`;
 
             container.innerHTML = `
                     <div class="row g-5 align-items-start">
@@ -1376,9 +1450,7 @@
                             <p class="text-secondary-glow mt-3" style="font-size:1.1rem;">${p.description}</p>
                             <div class="h2 fw-bold gradient-text mt-3">$${p.price}</div>
                             <div class="mt-4 d-flex flex-wrap gap-3">
-                                <button class="btn btn-neon btn-neon-lg px-5 add-cart-btn" data-id="${p.id}">
-                                    <i class="bi bi-cart-plus me-2"></i> Add to Cart
-                                </button>
+                                ${actionBtn}
                                 <a href="#" class="btn btn-outline-neon btn-neon-lg" onclick="navigateTo('products')">Browse All</a>
                             </div>
                             <div class="mt-4 text-secondary-glow small">
@@ -1453,7 +1525,7 @@
         }
 
         // ================================================================
-        // RENDER: Checkout Summary
+        // RENDER: Checkout Summary (includes total items count)
         // ================================================================
         function renderCheckoutSummary() {
             const container = document.getElementById('orderSummary');
@@ -1467,10 +1539,12 @@
             }
             let html = '';
             let total = 0;
+            let totalItems = 0;
             cart.forEach(item => {
                 const p = PRODUCTS.find(x => x.id === item.id);
                 if (!p) return;
                 total += p.price * item.qty;
+                totalItems += item.qty;
                 html += `
                         <div class="item-row">
                             <span>${p.name} × ${item.qty}</span>
@@ -1478,8 +1552,25 @@
                         </div>
                     `;
             });
+            // Add total items line
+            html += `
+                    <div class="item-row fw-bold" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-top: 0.5rem; margin-top: 0.5rem;">
+                        <span>Total items</span>
+                        <span>${totalItems}</span>
+                    </div>
+                `;
             container.innerHTML = html;
             totalEl.textContent = '$' + total.toFixed(2);
+        }
+
+        // ================================================================
+        // LOGIN HANDLER (just a demo)
+        // ================================================================
+        function handleLogin(e) {
+            e.preventDefault();
+            showToast('Logged in successfully! (demo)', 'success');
+            // Optionally redirect to home
+            setTimeout(() => navigateTo('home'), 800);
         }
 
         // ================================================================
@@ -1514,21 +1605,31 @@
                 renderProductGrid();
             });
 
-            // Add to cart (delegated)
+            // ================================================================
+            // MAIN CLICK HANDLER: Add to Cart → navigate to checkout
+            // ================================================================
             document.addEventListener('click', function(e) {
-                const btn = e.target.closest('.add-cart-btn');
-                if (btn) {
-                    e.preventDefault();
-                    const id = parseInt(btn.dataset.id);
-                    if (!isNaN(id)) {
-                        addToCart(id);
-                        const orig = btn.innerHTML;
-                        btn.innerHTML = '<i class="bi bi-check-lg"></i>';
-                        setTimeout(() => btn.innerHTML = orig, 1200);
-                        // re-render cart if on cart page
-                        if (currentPage === 'cart') renderCart();
-                        if (currentPage === 'checkout') renderCheckoutSummary();
-                    }
+                const btn = e.target.closest('.btn-cart-action, .add-cart-btn');
+                if (!btn) return;
+
+                e.preventDefault();
+                const id = parseInt(btn.dataset.id);
+                if (isNaN(id)) return;
+
+                const action = btn.dataset.action || 'add';
+
+                // If action is "add", add to cart and redirect to checkout
+                if (action === 'add') {
+                    addToCart(id);
+                    // Navigate to checkout
+                    navigateTo('checkout');
+                    return;
+                }
+
+                // If action is "checkout" (legacy), just navigate
+                if (action === 'checkout') {
+                    navigateTo('checkout');
+                    return;
                 }
             });
 
@@ -1568,7 +1669,6 @@
             renderDetail();
 
             // If coming from a product click, set detailProductId
-            // check URL hash for product id
             const hash = window.location.hash;
             if (hash.startsWith('#product=')) {
                 const id = parseInt(hash.split('=')[1]);
@@ -1591,6 +1691,8 @@
         window.getCart = getCart;
         window.clearCart = clearCart;
         window.renderCheckoutSummary = renderCheckoutSummary;
+        window.isInCart = isInCart;
+        window.handleLogin = handleLogin;
 
         console.log('🚀 NOVA — Futuristic E‑Commerce loaded.');
         console.log('📦 Products:', PRODUCTS.length);
